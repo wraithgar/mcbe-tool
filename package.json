@@ -1,8 +1,8 @@
 {
-  "name": "@gar/mcbe-render",
+  "name": "@gar/mcbe-tool",
   "version": "1.0.0",
-  "description": "A tool to render Minecraft: Bedrock Edition worlds.",
-  "main": "bin/mcbe-render.js",
+  "description": "A tool to explore Minecraft: Bedrock Edition worlds.",
+  "main": "bin/mcbe-tool.js",
   "private": true,
   "scripts": {
     "lint": "standard"
@@ -17,6 +17,7 @@
     "leveldb-zlib": "^1.1.0",
     "mapnik": "^4.5.9-dev",
     "pngjs": "^6.0.0",
+    "prismarine-nbt": "^1.6.0",
     "tga2png": "^0.1.3",
     "vec3": "^0.1.7",
     "yargs": "^17.2.1"

@@ -1,14 +1,8 @@
-exports.command = 'build'
-exports.desc = 'build the map files'
+exports.command = 'render'
+exports.desc = 'render the map files'
 
 exports.builder = yargs => yargs
   .options({
-    level: {
-      description: 'path to the minecraft level',
-      type: 'string',
-      alias: 'l',
-      demandOption: true
-    },
     output: {
       description: 'output path',
       type: 'string',
@@ -18,7 +12,7 @@ exports.builder = yargs => yargs
     chunk: {
       description: 'specify chunk to render',
       type: 'string',
-      alias: 'c',
+      alias: 'c'
     },
     single: {
       description: 'only render a single chunk',
@@ -37,15 +31,14 @@ exports.handler = async function (argv) {
   if (!argv.debug) {
     bar = new CliProgress.SingleBar({ fps: 1 }, CliProgress.Presets.shades_classic)
   }
-  const level = new Level(argv.level, argv.output)
+  const level = new Level(argv.level)
 
   log.info(`Rendering "${await level.name}" to ${argv.output}`)
 
   log.info('Iterating through db, this could take awhile on larger worlds')
 
-  // We have to iterate through the whole db first to discover our bounds
-  // before we can render
-  await level.iterate()
+  // Iterate through the whole db first to discover our bounds
+  await level.findChunks()
 
   log.info('Done')
   log.debug(`Allocated ${Math.round((process.memoryUsage().heapUsed / Math.pow(1024, 2)))}MB of memory when iterating through the database.`)
@@ -55,9 +48,9 @@ exports.handler = async function (argv) {
 
   try {
     bar && bar.start(level.chunkCount, 0)
-    for (const key in level.chunkKeys) {
+    for (const coords in level.chunks) {
       bar && bar.increment()
-      await level.renderChunk(key, argv.chunk)
+      await level.renderChunk(coords, argv.output, argv.chunk)
       if (argv.single) {
         break
       }
