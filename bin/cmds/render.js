@@ -29,7 +29,7 @@ exports.handler = async function (argv) {
   let bar
 
   if (!argv.debug) {
-    bar = new CliProgress.SingleBar({ fps: 1 }, CliProgress.Presets.shades_classic)
+    // bar = new CliProgress.SingleBar({ fps: 1 }, CliProgress.Presets.shades_classic)
   }
   const level = new Level(argv.level)
 
