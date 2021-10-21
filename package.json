@@ -5,8 +5,13 @@
   "main": "bin/mcbe-tool.js",
   "private": true,
   "scripts": {
+    "test": "lab -a @hapi/code -t 100 -I levelDbOpened",
     "lint": "standard"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "keywords": [],
   "author": "Gar <gar+npm@danger.computer>",
   "license": "ISC",
@@ -23,6 +28,9 @@
     "yargs": "^17.2.1"
   },
   "devDependencies": {
+    "@hapi/code": "^8.0.3",
+    "@hapi/lab": "^24.3.2",
+    "rimraf": "^3.0.2",
     "standard": "^16.0.4"
   }
 }
