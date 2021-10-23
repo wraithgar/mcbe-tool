@@ -4,24 +4,33 @@ const promisify = require('@gar/promisify')
 
 const fs = promisify(require('fs'))
 const path = require('path')
+const os = require('os')
 
 const { LevelDB } = require('leveldb-zlib')
 const nbt = require('prismarine-nbt')
 const log = require('../../lib/log')
+const logOut = log.out
 
 class DB {
-  constructor ({ path: dbPath }) {
-    this.path = dbPath
+  constructor () {
+    // no async functions in constructors :/
+    this.path = require('fs').mkdtempSync(os.tmpdir())
+    this.output = []
+    this.log = log
+    log.out = o => this.output.push(o)
   }
 
   async cleanup () {
     await fs.rm(this.path, { recursive: true })
+    log.out = logOut
   }
 
   async addDat (filename) {
     const fixture = getFixture(filename)
     const value = nbt.writeUncompressed(fixture)
     await fs.writeFile(path.join(this.path, 'level.dat'), value)
+    const levelName = fixture.value.LevelName.value
+    await fs.writeFile(path.join(this.path, 'levelname.txt'), levelName)
   }
 
   async addFixtures (filenames) {
