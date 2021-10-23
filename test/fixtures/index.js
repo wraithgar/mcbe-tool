@@ -3,10 +3,10 @@
 const promisify = require('@gar/promisify')
 
 const fs = promisify(require('fs'))
-const rimraf = promisify(require('rimraf'))
 const path = require('path')
 
 const { LevelDB } = require('leveldb-zlib')
+const nbt = require('prismarine-nbt')
 const log = require('../../lib/log')
 
 class DB {
@@ -15,7 +15,13 @@ class DB {
   }
 
   async cleanup() {
-    await rimraf(this.path)
+    await fs.rm(this.path, { recursive: true })
+  }
+
+  async addDat(filename) {
+    const fixture = getFixture(filename)
+    const value = nbt.writeUncompressed(fixture)
+    await fs.writeFile(path.join(this.path, 'level.dat'), value)
   }
 
   async addFixtures(filenames) {
@@ -23,17 +29,19 @@ class DB {
     await db.open()
     for (const filename of filenames) {
       const fixture = getFixture(filename)
-      for (const keyString of Object.keys(fixture)) {
+      for (const keyString in fixture) {
         const key = Buffer.from(keyString, 'hex')
         const data = Buffer.from(fixture[keyString], 'hex')
-        // console.log(`db put`, key.toString('hex'))
-        await db.put(key, data)
+        if (!await db.put(key, data)) {
+          throw new Error('failed writing to leveldb')
+        }
       }
     }
     await db.close()
   }
 
 }
+
 
 const getFixture = filename => require(path.resolve('.', 'test', 'fixtures', `${filename}.json`))
 

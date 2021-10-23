@@ -30,7 +30,6 @@
   "devDependencies": {
     "@hapi/code": "^8.0.3",
     "@hapi/lab": "^24.3.2",
-    "rimraf": "^3.0.2",
     "standard": "^16.0.4"
   }
 }

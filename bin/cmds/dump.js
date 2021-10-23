@@ -1,16 +1,20 @@
 exports.command = 'dump'
-exports.desc = 'exports chunk data'
+exports.desc = 'exports level data'
 
-const { LevelDB } = require('leveldb-zlib')
-
+/* $lab:coverage:off$ */
 exports.builder = yargs => yargs
   .options({
     chunk: {
       description: 'specify chunk to render in the form of chunkX,chunkZ ',
       type: 'string',
       alias: 'c',
-      demandOption: true,
     },
+    type: {
+      description: 'type of dump',
+      choices: ['chunk', 'level'],
+      alias: 't',
+      default: 'level'
+    }
   })
   .coerce({
     chunk: function (c) {
@@ -26,39 +30,57 @@ exports.builder = yargs => yargs
       }
     }
   })
+  .check(function (argv) {
+    if (argv.type === 'chunk' && !argv.chunk) {
+      throw new Error('please provide a chunk')
+    }
+    return true
+  })
+/* $lab:coverage:on$ */
 
 exports.handler = async function (argv) {
-  const path = require('path')
+  const promisify = require('@gar/promisify')
+  const fs = promisify(require('fs'))
   const log = require('../../lib/log')
+  const path = require('path')
+  const { LevelDB } = require('leveldb-zlib')
+  const nbt = require('prismarine-nbt')
 
-  const dump = {}
-
-  const db = new LevelDB(path.join(argv.level, 'db'))
-  await db.open()
-  const iter = db.getIterator({ keys: true, values: true })
-  let entries
-  entries = await iter.next()
-  while (entries) {
-    // [ key, value (empty), key, value (empty)]
-    for (let i = 0; i < entries.length; i++) {
-      if (i % 2) {
-        const key = entries[i]
-        if (!key.toString().match(/\W+/)) {
-          continue
-        }
-        if (key.length === 9 || key.length === 10) {
-          const X = key.readInt32LE(0)
-          const Z = key.readInt32LE(4)
-          if ((argv.chunk.X !== X) || (argv.chunk.Z !== Z)) {
+  let dump
+  if (argv.type === 'chunk') {
+    dump = {}
+    const db = new LevelDB(path.join(argv.level, 'db'))
+    await db.open()
+    const iter = db.getIterator()
+    let entries
+    entries = await iter.next()
+    while (entries) {
+      // [ key, value (empty), key, value (empty)]
+      for (let i = 0; i < entries.length; i++) {
+        if (i % 2) {
+          const key = entries[i]
+          if (['BiomeData', 'Overworld', 'mobevents', 'scoreboard'].includes(key.toString())) {
+            // Why would they do this?
             continue
           }
-          log.debug(`pulling key for chunk ${X},${Z}`, key.toString('hex'))
-          const data = await db.get(key)
-          dump[key.toString('hex')] = data.toString('hex')
+          if (key.length === 9 || key.length === 10) {
+            const X = key.readInt32LE(0)
+            const Z = key.readInt32LE(4)
+            if ((argv.chunk.X !== X) || (argv.chunk.Z !== Z)) {
+              continue
+            }
+            log.debug(`pulling key for chunk ${X},${Z}`, key.toString('hex'))
+            const data = await db.get(key)
+            dump[key.toString('hex')] = data.toString('hex')
+          }
         }
       }
+      entries = await iter.next()
     }
-    entries = await iter.next()
+  } else {
+    const dat = await fs.readFile(path.join(argv.level, 'level.dat'))
+    const { parsed } = await nbt.parse(dat)
+    dump = parsed
   }
   log.out(JSON.stringify(dump, null, ' '))
 }

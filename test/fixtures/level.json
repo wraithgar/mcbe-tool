@@ -1,0 +1,497 @@
+{
+ "type": "compound",
+ "name": "",
+ "value": {
+  "BiomeOverride": {
+   "type": "string",
+   "value": ""
+  },
+  "CenterMapsToOrigin": {
+   "type": "byte",
+   "value": 0
+  },
+  "ConfirmedPlatformLockedContent": {
+   "type": "byte",
+   "value": 0
+  },
+  "Difficulty": {
+   "type": "int",
+   "value": 1
+  },
+  "FlatWorldLayers": {
+   "type": "string",
+   "value": "{\"biome_id\":1,\"block_layers\":[{\"block_name\":\"minecraft:bedrock\",\"count\":1},{\"block_name\":\"minecraft:dirt\",\"count\":2},{\"block_name\":\"minecraft:grass\",\"count\":1}],\"encoding_version\":5,\"structure_options\":null}\n"
+  },
+  "ForceGameType": {
+   "type": "byte",
+   "value": 0
+  },
+  "GameType": {
+   "type": "int",
+   "value": 0
+  },
+  "Generator": {
+   "type": "int",
+   "value": 1
+  },
+  "InventoryVersion": {
+   "type": "string",
+   "value": "1.17.31"
+  },
+  "LANBroadcast": {
+   "type": "byte",
+   "value": 1
+  },
+  "LANBroadcastIntent": {
+   "type": "byte",
+   "value": 1
+  },
+  "LastPlayed": {
+   "type": "long",
+   "value": [
+    0,
+    1634706248
+   ]
+  },
+  "LevelName": {
+   "type": "string",
+   "value": "Main Survival World"
+  },
+  "LimitedWorldOriginX": {
+   "type": "int",
+   "value": 44
+  },
+  "LimitedWorldOriginY": {
+   "type": "int",
+   "value": 32767
+  },
+  "LimitedWorldOriginZ": {
+   "type": "int",
+   "value": 4
+  },
+  "MinimumCompatibleClientVersion": {
+   "type": "list",
+   "value": {
+    "type": "int",
+    "value": [
+     1,
+     17,
+     40,
+     0,
+     0
+    ]
+   }
+  },
+  "MultiplayerGame": {
+   "type": "byte",
+   "value": 1
+  },
+  "MultiplayerGameIntent": {
+   "type": "byte",
+   "value": 0
+  },
+  "NetherScale": {
+   "type": "int",
+   "value": 8
+  },
+  "NetworkVersion": {
+   "type": "int",
+   "value": 465
+  },
+  "Platform": {
+   "type": "int",
+   "value": 2
+  },
+  "PlatformBroadcastIntent": {
+   "type": "int",
+   "value": 0
+  },
+  "RandomSeed": {
+   "type": "long",
+   "value": [
+    0,
+    -1382478983
+   ]
+  },
+  "SpawnV1Villagers": {
+   "type": "byte",
+   "value": 0
+  },
+  "SpawnX": {
+   "type": "int",
+   "value": 44
+  },
+  "SpawnY": {
+   "type": "int",
+   "value": 32767
+  },
+  "SpawnZ": {
+   "type": "int",
+   "value": 4
+  },
+  "StorageVersion": {
+   "type": "int",
+   "value": 8
+  },
+  "Time": {
+   "type": "long",
+   "value": [
+    0,
+    39178400
+   ]
+  },
+  "WorldVersion": {
+   "type": "int",
+   "value": 0
+  },
+  "XBLBroadcastIntent": {
+   "type": "int",
+   "value": 0
+  },
+  "abilities": {
+   "type": "compound",
+   "value": {
+    "attackmobs": {
+     "type": "byte",
+     "value": 0
+    },
+    "attackplayers": {
+     "type": "byte",
+     "value": 0
+    },
+    "build": {
+     "type": "byte",
+     "value": 0
+    },
+    "doorsandswitches": {
+     "type": "byte",
+     "value": 0
+    },
+    "flySpeed": {
+     "type": "float",
+     "value": 0.05000000074505806
+    },
+    "flying": {
+     "type": "byte",
+     "value": 0
+    },
+    "instabuild": {
+     "type": "byte",
+     "value": 0
+    },
+    "invulnerable": {
+     "type": "byte",
+     "value": 0
+    },
+    "lightning": {
+     "type": "byte",
+     "value": 0
+    },
+    "mayfly": {
+     "type": "byte",
+     "value": 0
+    },
+    "mine": {
+     "type": "byte",
+     "value": 0
+    },
+    "op": {
+     "type": "byte",
+     "value": 0
+    },
+    "opencontainers": {
+     "type": "byte",
+     "value": 0
+    },
+    "permissionsLevel": {
+     "type": "int",
+     "value": 0
+    },
+    "playerPermissionsLevel": {
+     "type": "int",
+     "value": 0
+    },
+    "teleport": {
+     "type": "byte",
+     "value": 0
+    },
+    "walkSpeed": {
+     "type": "float",
+     "value": 0.10000000149011612
+    }
+   }
+  },
+  "baseGameVersion": {
+   "type": "string",
+   "value": "*"
+  },
+  "bonusChestEnabled": {
+   "type": "byte",
+   "value": 0
+  },
+  "bonusChestSpawned": {
+   "type": "byte",
+   "value": 0
+  },
+  "commandblockoutput": {
+   "type": "byte",
+   "value": 1
+  },
+  "commandblocksenabled": {
+   "type": "byte",
+   "value": 1
+  },
+  "commandsEnabled": {
+   "type": "byte",
+   "value": 0
+  },
+  "currentTick": {
+   "type": "long",
+   "value": [
+    0,
+    36627303
+   ]
+  },
+  "dodaylightcycle": {
+   "type": "byte",
+   "value": 1
+  },
+  "doentitydrops": {
+   "type": "byte",
+   "value": 1
+  },
+  "dofiretick": {
+   "type": "byte",
+   "value": 1
+  },
+  "doimmediaterespawn": {
+   "type": "byte",
+   "value": 0
+  },
+  "doinsomnia": {
+   "type": "byte",
+   "value": 1
+  },
+  "domobloot": {
+   "type": "byte",
+   "value": 1
+  },
+  "domobspawning": {
+   "type": "byte",
+   "value": 1
+  },
+  "dotiledrops": {
+   "type": "byte",
+   "value": 1
+  },
+  "doweathercycle": {
+   "type": "byte",
+   "value": 1
+  },
+  "drowningdamage": {
+   "type": "byte",
+   "value": 1
+  },
+  "eduOffer": {
+   "type": "int",
+   "value": 0
+  },
+  "educationFeaturesEnabled": {
+   "type": "byte",
+   "value": 0
+  },
+  "experiments": {
+   "type": "compound",
+   "value": {
+    "experiments_ever_used": {
+     "type": "byte",
+     "value": 0
+    },
+    "saved_with_toggled_experiments": {
+     "type": "byte",
+     "value": 0
+    }
+   }
+  },
+  "falldamage": {
+   "type": "byte",
+   "value": 1
+  },
+  "firedamage": {
+   "type": "byte",
+   "value": 1
+  },
+  "freezedamage": {
+   "type": "byte",
+   "value": 1
+  },
+  "functioncommandlimit": {
+   "type": "int",
+   "value": 10000
+  },
+  "hasBeenLoadedInCreative": {
+   "type": "byte",
+   "value": 0
+  },
+  "hasLockedBehaviorPack": {
+   "type": "byte",
+   "value": 0
+  },
+  "hasLockedResourcePack": {
+   "type": "byte",
+   "value": 0
+  },
+  "immutableWorld": {
+   "type": "byte",
+   "value": 0
+  },
+  "isFromLockedTemplate": {
+   "type": "byte",
+   "value": 0
+  },
+  "isFromWorldTemplate": {
+   "type": "byte",
+   "value": 0
+  },
+  "isSingleUseWorld": {
+   "type": "byte",
+   "value": 0
+  },
+  "isWorldTemplateOptionLocked": {
+   "type": "byte",
+   "value": 0
+  },
+  "keepinventory": {
+   "type": "byte",
+   "value": 0
+  },
+  "lastOpenedWithVersion": {
+   "type": "list",
+   "value": {
+    "type": "int",
+    "value": [
+     1,
+     17,
+     40,
+     6,
+     0
+    ]
+   }
+  },
+  "lightningLevel": {
+   "type": "float",
+   "value": 0
+  },
+  "lightningTime": {
+   "type": "int",
+   "value": 76875
+  },
+  "limitedWorldDepth": {
+   "type": "int",
+   "value": 16
+  },
+  "limitedWorldWidth": {
+   "type": "int",
+   "value": 16
+  },
+  "maxcommandchainlength": {
+   "type": "int",
+   "value": 65535
+  },
+  "mobgriefing": {
+   "type": "byte",
+   "value": 1
+  },
+  "naturalregeneration": {
+   "type": "byte",
+   "value": 1
+  },
+  "prid": {
+   "type": "string",
+   "value": ""
+  },
+  "pvp": {
+   "type": "byte",
+   "value": 0
+  },
+  "rainLevel": {
+   "type": "float",
+   "value": 0
+  },
+  "rainTime": {
+   "type": "int",
+   "value": 48759
+  },
+  "randomtickspeed": {
+   "type": "int",
+   "value": 1
+  },
+  "requiresCopiedPackRemovalCheck": {
+   "type": "byte",
+   "value": 0
+  },
+  "respawnblocksexplode": {
+   "type": "byte",
+   "value": 1
+  },
+  "sendcommandfeedback": {
+   "type": "byte",
+   "value": 1
+  },
+  "serverChunkTickRange": {
+   "type": "int",
+   "value": 4
+  },
+  "showbordereffect": {
+   "type": "byte",
+   "value": 1
+  },
+  "showcoordinates": {
+   "type": "byte",
+   "value": 1
+  },
+  "showdeathmessages": {
+   "type": "byte",
+   "value": 1
+  },
+  "showtags": {
+   "type": "byte",
+   "value": 1
+  },
+  "spawnMobs": {
+   "type": "byte",
+   "value": 1
+  },
+  "spawnradius": {
+   "type": "int",
+   "value": 5
+  },
+  "startWithMapEnabled": {
+   "type": "byte",
+   "value": 0
+  },
+  "texturePacksRequired": {
+   "type": "byte",
+   "value": 0
+  },
+  "tntexplodes": {
+   "type": "byte",
+   "value": 1
+  },
+  "useMsaGamertagsOnly": {
+   "type": "byte",
+   "value": 1
+  },
+  "worldStartCount": {
+   "type": "long",
+   "value": [
+    0,
+    -14
+   ]
+  },
+  "world_policies": {
+   "type": "compound",
+   "value": {}
+  }
+ }
+}
