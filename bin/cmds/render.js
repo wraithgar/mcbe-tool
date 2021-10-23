@@ -10,21 +10,29 @@ exports.builder = yargs => yargs
       default: './output'
     },
     chunk: {
-      description: 'specify chunk to render',
+      description: 'specify chunk to render in the form of chunkX,chunkZ ',
       type: 'string',
       alias: 'c'
-    },
-    single: {
-      description: 'only render a single chunk',
-      type: 'boolean',
-      alias: 's',
-      default: false
+    }
+  })
+  .coerce({
+    chunk: function (c) {
+      if (c) {
+        const coords = c.split(',').map(Number)
+        if (coords.length !== 2) {
+          throw new Error('chunk must be in format chunkX,chunkZ')
+        }
+        if (isNaN(coords[0]) || isNaN(coords[1])) {
+          throw new Error('chunk must be in format chunkX,chunkZ')
+        }
+        return { X: coords[0], Z: coords[1] }
+      }
     }
   })
 
 exports.handler = async function (argv) {
   const log = require('../../lib/log')
-  const CliProgress = require('cli-progress')
+  // const CliProgress = require('cli-progress')
   const Level = require('../../lib/level')
   let bar
 
@@ -35,9 +43,9 @@ exports.handler = async function (argv) {
 
   log.info(`Rendering "${await level.name}" to ${argv.output}`)
 
-  log.info('Iterating through db, this could take awhile on larger worlds')
+  log.info('Finding chunks...')
 
-  // Iterate through the whole db first to discover our bounds
+  // We do NOT want to limit chunks here or the bounds will be off
   await level.findChunks()
 
   log.info('Done')
@@ -51,9 +59,6 @@ exports.handler = async function (argv) {
     for (const coords in level.chunks) {
       bar && bar.increment()
       await level.renderChunk(coords, argv.output, argv.chunk)
-      if (argv.single) {
-        break
-      }
     }
     bar && bar.stop()
   } catch (err) {
