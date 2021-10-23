@@ -3,7 +3,6 @@
 const lab = (exports.lab = require('@hapi/lab').script())
 const { describe, it, before, beforeEach, after } = lab
 const { expect } = require('@hapi/code')
-const util = require('util')
 const promisify = require('@gar/promisify')
 const fs = promisify(require('fs'))
 const os = require('os')

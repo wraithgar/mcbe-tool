@@ -32,7 +32,7 @@ class DB {
       for (const keyString in fixture) {
         const key = Buffer.from(keyString, 'hex')
         const data = Buffer.from(fixture[keyString], 'hex')
-        if (!await db.put(key, data)) {
+        if (!await db.put(key, data, { sync: true })) {
           throw new Error('failed writing to leveldb')
         }
       }
