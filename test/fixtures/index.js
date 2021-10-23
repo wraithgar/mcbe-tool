@@ -10,21 +10,21 @@ const nbt = require('prismarine-nbt')
 const log = require('../../lib/log')
 
 class DB {
-  constructor({ path:dbPath }) {
+  constructor ({ path: dbPath }) {
     this.path = dbPath
   }
 
-  async cleanup() {
+  async cleanup () {
     await fs.rm(this.path, { recursive: true })
   }
 
-  async addDat(filename) {
+  async addDat (filename) {
     const fixture = getFixture(filename)
     const value = nbt.writeUncompressed(fixture)
     await fs.writeFile(path.join(this.path, 'level.dat'), value)
   }
 
-  async addFixtures(filenames) {
+  async addFixtures (filenames) {
     const db = new LevelDB(path.join(this.path, 'db'), { createIfMissing: true })
     await db.open()
     for (const filename of filenames) {
@@ -39,9 +39,7 @@ class DB {
     }
     await db.close()
   }
-
 }
-
 
 const getFixture = filename => require(path.resolve('.', 'test', 'fixtures', `${filename}.json`))
 

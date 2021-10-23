@@ -22,8 +22,8 @@ beforeEach(({ context }) => {
   context.output.length = 0
 })
 
-after(async ( { context }) => {
-  fixtures.log.out= context._logOut
+after(async ({ context }) => {
+  fixtures.log.out = context._logOut
   await context.db.cleanup()
 })
 
@@ -36,11 +36,11 @@ describe('chunk', () => {
     ])
   })
 
-  it ('dumps a single chunk', async ( { context }) => {
+  it('dumps a single chunk', async ({ context }) => {
     await dump.handler({
       type: 'chunk',
       level: context.db.path,
-      chunk: { X: 0, Z: 0}
+      chunk: { X: 0, Z: 0 }
     })
     expect(context.output.map(JSON.parse)).to.equal([fixtures.getFixture('chunk-0-0')])
   })

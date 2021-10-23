@@ -7,7 +7,7 @@ exports.builder = yargs => yargs
     chunk: {
       description: 'specify chunk to render in the form of chunkX,chunkZ ',
       type: 'string',
-      alias: 'c',
+      alias: 'c'
     },
     type: {
       description: 'type of dump',

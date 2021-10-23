@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "test": "lab -a @hapi/code -t 100 -I levelDbOpened",
+    "posttest": "npm run lint",
     "lint": "standard"
   },
   "files": [

@@ -13,7 +13,7 @@ exports.builder = yargs => yargs
       description: 'specify chunk to render in the form of chunkX,chunkZ ',
       type: 'string',
       alias: 'c'
-    },
+    }
   })
   .coerce({
     chunk: function (c) {
@@ -32,7 +32,7 @@ exports.builder = yargs => yargs
 
 exports.handler = async function (argv) {
   const log = require('../../lib/log')
-  const CliProgress = require('cli-progress')
+  // const CliProgress = require('cli-progress')
   const Level = require('../../lib/level')
   let bar
 
