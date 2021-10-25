@@ -5,7 +5,7 @@
   "main": "bin/mcbe-tool.js",
   "private": true,
   "scripts": {
-    "test": "lab -a @hapi/code -t 100 -I levelDbOpened,@@any-promise/REGISTRATION",
+    "test": "lab -a @hapi/code -t 50 -I levelDbOpened,@@any-promise/REGISTRATION",
     "posttest": "npm run lint",
     "lint": "standard"
   },

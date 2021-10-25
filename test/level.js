@@ -1,7 +1,7 @@
 'use strict'
 
 const lab = (exports.lab = require('@hapi/lab').script())
-const { describe, it, before, beforeEach, after } = lab
+const { describe, it, before, after } = lab
 const { expect } = require('@hapi/code')
 
 const fixtures = require('./fixtures')
@@ -16,7 +16,6 @@ after(async ({ context }) => {
 })
 
 describe('level', () => {
-
   before(async ({ context }) => {
     await context.db.addDat('level')
   })
