@@ -14,7 +14,7 @@ const logOut = log.out
 class DB {
   constructor () {
     // no async functions in constructors :/
-    this.path = require('fs').mkdtempSync(os.tmpdir())
+    this.path = require('fs').mkdtempSync(path.join(os.tmpdir(), 'mcbe-tool-'))
     this.output = []
     this.log = log
     log.out = o => this.output.push(o)
