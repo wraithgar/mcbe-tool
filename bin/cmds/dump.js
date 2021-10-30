@@ -53,7 +53,7 @@ exports.handler = async function (argv) {
     await db.open()
     const iter = db.getIterator({ values: false })
     let entry
-    for (let i = 0; entry = await iter.next(); i++) {
+    for (let i = 0; entry = await iter.next(); i++) { // eslint-disable-line no-cond-assign
       const key = entry[1]
       if (['BiomeData', 'Overworld', 'mobevents', 'scoreboard'].includes(key.toString())) {
         // Why would they do this?

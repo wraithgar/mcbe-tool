@@ -1,6 +1,5 @@
 'use strict'
 
-const fixtures = require('../test/fixtures')
 const promisify = require('@gar/promisify')
 const fs = promisify(require('fs'))
 const path = require('path')
@@ -15,9 +14,9 @@ const main = async () => {
   const db = new LevelDB(path.join(dbPath, 'db'), { createIfMissing: true })
   await db.open()
   for (const filename of [
-    'string-keys',
-    'chunk-0-1',
     'chunk-0-0',
+    'chunk-0-1',
+    'string-keys'
   ]) {
     const fixture = require(path.resolve('.', 'test', 'fixtures', `${filename}.json`))
     for (const keyString in fixture) {
@@ -30,7 +29,7 @@ const main = async () => {
   }
   const iter = db.getIterator()
   let entry
-  for (let i = 0; entry = await iter.next(); i++) {
+  for (let i = 0; entry = await iter.next(); i++) { // eslint-disable-line no-cond-assign
     console.log(entry[1].toString('hex'))
   }
 }
