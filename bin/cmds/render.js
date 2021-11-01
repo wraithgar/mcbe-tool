@@ -32,12 +32,12 @@ exports.builder = yargs => yargs
 
 exports.handler = async function (argv) {
   const log = require('../../lib/log')
-  // const CliProgress = require('cli-progress')
+  const CliProgress = require('cli-progress')
   const Level = require('../../lib/level')
   let bar
 
   if (!argv.debug) {
-    // bar = new CliProgress.SingleBar({ fps: 1 }, CliProgress.Presets.shades_classic)
+    bar = new CliProgress.SingleBar({ fps: 1 }, CliProgress.Presets.shades_classic)
   }
   const level = new Level(argv.level)
 
@@ -51,7 +51,7 @@ exports.handler = async function (argv) {
   log.info('Done')
   log.debug(`Allocated ${Math.round((process.memoryUsage().heapUsed / Math.pow(1024, 2)))}MB of memory when iterating through the database.`)
 
-  log.info(`World reaches from chunks (${level.chunkX[0]},${level.chunkZ[0]}) to (${level.chunkX[1]},${level.chunkZ[1]}) (x,z) with zoomLevelMax ${level.zoomLevelMax}`)
+  log.info(`World reaches from chunks (${level.bounds.min.X},${level.bounds.min.Z}) to (${level.bounds.max.X},${level.bounds.max.Z}) with zoomLevelMax ${level.zoomLevelMax}`)
   log.debug(`Processing and rendering ${level.chunkCount} chunks, containing ${level.subChunkCount} valid SubChunks...`)
 
   try {

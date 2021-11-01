@@ -51,31 +51,24 @@ exports.handler = async function (argv) {
     dump = {}
     const db = new LevelDB(path.join(argv.level, 'db'))
     await db.open()
-    const iter = db.getIterator()
-    let entries
-    entries = await iter.next()
-    while (entries) {
-      // [ key, value (empty), key, value (empty)]
-      for (let i = 0; i < entries.length; i++) {
-        if (i % 2) {
-          const key = entries[i]
-          if (['BiomeData', 'Overworld', 'mobevents', 'scoreboard'].includes(key.toString())) {
-            // Why would they do this?
-            continue
-          }
-          if (key.length === 9 || key.length === 10) {
-            const X = key.readInt32LE(0)
-            const Z = key.readInt32LE(4)
-            if ((argv.chunk.X !== X) || (argv.chunk.Z !== Z)) {
-              continue
-            }
-            log.debug(`pulling key for chunk ${X},${Z}`, key.toString('hex'))
-            const data = await db.get(key)
-            dump[key.toString('hex')] = data.toString('hex')
-          }
-        }
+    const iter = db.getIterator({ values: false })
+    let entry
+    for (let i = 0; entry = await iter.next(); i++) { // eslint-disable-line no-cond-assign
+      const key = entry[1]
+      if (['BiomeData', 'Overworld', 'mobevents', 'scoreboard'].includes(key.toString())) {
+        // Why would they do this?
+        continue
       }
-      entries = await iter.next()
+      if (key.length === 9 || key.length === 10) {
+        const X = key.readInt32LE(0)
+        const Z = key.readInt32LE(4)
+        if ((argv.chunk.X !== X) || (argv.chunk.Z !== Z)) {
+          continue
+        }
+        log.debug(`pulling key for chunk ${X},${Z}`, key.toString('hex'))
+        const data = await db.get(key)
+        dump[key.toString('hex')] = data.toString('hex')
+      }
     }
   } else {
     const dat = await fs.readFile(path.join(argv.level, 'level.dat'))
