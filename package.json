@@ -21,7 +21,7 @@
     "cli-progress": "^3.9.1",
     "color-convert": "^2.0.1",
     "leveldb-zlib": "^1.1.1",
-    "mapnik": "^4.5.9-dev",
+    "mapnik": "^4.5.9",
     "pngjs": "^6.0.0",
     "prismarine-nbt": "^1.6.0",
     "tga2png": "^0.1.3",
