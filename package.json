@@ -29,7 +29,7 @@
     "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@hapi/code": "^8.0.4",
+    "@hapi/code": "^8.0.5",
     "@hapi/lab": "^24.4.0",
     "standard": "^16.0.4"
   }
