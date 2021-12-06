@@ -20,7 +20,7 @@
     "@gar/promisify": "^1.1.2",
     "cli-progress": "^3.9.1",
     "color-convert": "^2.0.1",
-    "leveldb-zlib": "^1.1.1",
+    "leveldb-zlib": "^1.2.0",
     "mapnik": "^4.5.9",
     "pngjs": "^6.0.0",
     "prismarine-nbt": "^2.0.0",
